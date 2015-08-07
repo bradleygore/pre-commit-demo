@@ -1,0 +1,27 @@
+#!/bin/sh
+
+#get node version to verify it's installed.  If not, just exit without running the hook.
+NODE_VERSION=$(node -v);
+
+# check to make sure the variable is defined and isn't empty string
+if [ -n "$NODE_VERSION" ]; then
+
+    # Get full directory of this script file instead of PWD and add /pre-commit-js to it
+    PRE_COMMIT_SCRIPT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/pre-commit-js;
+
+    # Have node execute the file
+    $(node $PRE_COMMIT_SCRIPT);
+
+    # $? holds exit code of *last executed command* - trickster b/c even an echo command changes its value
+    PRE_COMMIT_STATUS=$?;
+
+    if ! [ $PRE_COMMIT_STATUS -eq 0 ]; then
+        echo "Unable to complete the commit.";
+    fi
+
+    # exit with the status that the node script exited with
+    exit $PRE_COMMIT_STATUS;
+else
+    # 0 is success, anything else is error and will prevent the commit
+    exit 0;
+fi

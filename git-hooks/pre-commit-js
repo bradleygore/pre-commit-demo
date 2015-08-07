@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+'use strict';
+
+//assumes node_modules is at root of repository
+
+var spawn = require('child_process').spawn,
+    gulp = (process.platform === 'win32' ? 'gulp.cmd' : 'gulp'),
+    path = require('path'),
+    cwd = process.env.PWD || process.cwd(),
+    notifier = require('node-notifier'),
+    hookName = process.argv[1].split(path.sep).pop();
+
+var hook = spawn(gulp, [hookName], {
+    stdio: 'inherit'
+});
+
+hook.on('close', function (code) {
+    if (code !== 0) {
+        notifier.notify({
+            title: 'Cannot Commit',
+            message: 'Awww, it\'s a sad - Pre-Commit Check Failed :-('
+        });
+    }
+    process.exit(code);
+});
+
+// catch exceptions so node doesn't exit prematurely, leaving a runaway process
+process.on('uncaughtException', function (err) {
+    notifier.notify({
+        title: 'Uncaught Pre-Commit Exception',
+        message: err.stack
+    });
+    console.error('Uncaught Pre-Commit Exception', err.stack);
+    //http://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html
+    hook.kill('SIGTERM');
+    process.exit(1);
+});
