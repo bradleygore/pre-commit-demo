@@ -8,7 +8,7 @@ var spawn = require('child_process').spawn,
     path = require('path'),
     cwd = process.env.PWD || process.cwd(),
     notifier = require('node-notifier'),
-    hookName = process.argv[1].split(path.sep).pop();
+    hookName = 'lint'; //hookName is the gulp task to run
 
 var hook = spawn(gulp, [hookName], {
     stdio: 'inherit'

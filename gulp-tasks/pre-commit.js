@@ -1,7 +1,5 @@
 var gulp = require('gulp'),
     git = require('gulp-git'),
-    path = require('path'),
-    es = require('event-stream'),
     jshint = require('gulp-jshint');
 
 module.exports = function preCommit(done) {
@@ -14,7 +12,7 @@ module.exports = function preCommit(done) {
 
     git.status({
         args: '--porcelain',
-        quiet: true,
+        quiet: true
     }, function processStatus(err, status) {
 
         if (err) {
