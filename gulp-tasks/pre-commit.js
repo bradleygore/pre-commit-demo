@@ -35,6 +35,8 @@ module.exports = function preCommit(done) {
             return done();
         }
 
+        console.log('\nLINT MODIFIED FILES', JSON.stringify(modJsFiles, null, 4));
+
         function noop() {}
 
         gulp.src(modJsFiles)

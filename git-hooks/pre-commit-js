@@ -5,10 +5,13 @@
 
 var spawn = require('child_process').spawn,
     gulp = (process.platform === 'win32' ? 'gulp.cmd' : 'gulp'),
-    path = require('path'),
-    cwd = process.env.PWD || process.cwd(),
     notifier = require('node-notifier'),
-    hookName = 'lint'; //hookName is the gulp task to run
+    gulpLintAll = 'lint',
+    gulpLintOnlyModified = 'pre-commit',
+    //hookName is the gulp task to run
+    //change to gulpLintOnlyModified to execute
+    //  gulp task that only targets modified files
+    hookName = gulpLintAll;
 
 var hook = spawn(gulp, [hookName], {
     stdio: 'inherit'
