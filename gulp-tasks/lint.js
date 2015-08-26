@@ -4,5 +4,6 @@ var gulp = require('gulp'),
 module.exports = function lintJs() {
     return gulp.src('js/*.js')
         .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'));
+        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('fail'));
 };
