@@ -27,7 +27,8 @@ hook.on('close', function (code) {
     process.exit(code);
 });
 
-// catch exceptions so node doesn't exit prematurely, leaving a runaway process
+// catch exceptions so node doesn't exit prematurely,
+// leaving a runaway process
 process.on('uncaughtException', function (err) {
     notifier.notify({
         title: 'Uncaught Pre-Commit Exception',
