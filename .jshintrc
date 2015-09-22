@@ -71,7 +71,8 @@
     "worker"        : false,    // Web Workers
     "wsh"           : false,    // Windows Scripting Host
     "yui"           : false,    // Yahoo User Interface
-    "mocha"         : false,     // Mocha testing
+    "mocha"         : false,    // Mocha testing,
+    "jasmine"       : true,     // Jasmine Testing
 
     // Custom Globals
     "globals"       : {
