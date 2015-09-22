@@ -19,13 +19,7 @@ exports.getIndexedFiles = function() {
 
     var defer = Q.defer();
 
-    /*  --porcelain arg outputs all files separated by new line such that
-     Modified files are preceded by         " M "
-     New files are preceded by              "?? "
-     Deleted files are preceded by          " D "
-     Added then Deleted files preceded by   "AD "
-     */
-
+    //--porcelain arg outputs all files separated by new line such that file paths are preceded by 3 char status
     git.status({
         args: '--porcelain',
         quiet: true
