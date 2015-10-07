@@ -35,7 +35,9 @@ module.exports = function (done) {
                 'js/**/!(*-spec).js'
             ].concat(modJsFiles),
             singleRun: true
-        }, done).start();
+        }, function() {
+            done();
+        }).start();
     }).catch(function(up) {
         throw up;
     });

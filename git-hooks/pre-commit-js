@@ -12,7 +12,7 @@ var spawn = require('child_process').spawn,
     //hookName is the gulp task to run
     //  change to gulpExamineOnlyModified to execute
     //  gulp task that only targets modified files
-    hookName = gulpExamineAll;
+    hookName = gulpExamineOnlyModified;
 
 var hook = spawn(gulp, [hookName], {
     stdio: 'inherit'

@@ -13,7 +13,7 @@
 
     svc.getVendor = function(id) {
         return svc.getVendors().filter(function(c) {
-            return c.id === id;
+            return c.id !== id;
         })[0];
     };
 
