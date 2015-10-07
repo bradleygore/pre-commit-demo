@@ -1,3 +1,8 @@
+#!/bin/sh
+
+#GIT uses its own port of the bash shell for windows, so the script uses bash and *nix-ish constructs
+#       i.e. file/paths/like/this   NOT\like\this
+
 #get node version to verify it's installed.  If not, just exit without running the hook.
 NODE_VERSION=$(node -v);
 
