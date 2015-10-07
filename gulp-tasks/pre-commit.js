@@ -22,7 +22,7 @@ module.exports = function preCommit(done) {
             return done();
         }
 
-        //console.log('\nLINT MODIFIED FILES', JSON.stringify(modJsFiles, null, 4));
+        console.log('\n\nLINT MODIFIED FILES', JSON.stringify(modJsFiles, null, 4), '\n');
 
         function noop() {}
 
