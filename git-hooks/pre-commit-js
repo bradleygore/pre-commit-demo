@@ -6,7 +6,7 @@
 var spawn = require('child_process').spawn,
     gulp = (process.platform === 'win32' ? 'gulp.cmd' : 'gulp'),
     notifier = require('node-notifier'),
-    asciiUtil = require('../gulp-utils/ascii'),
+    asciiUtil = require('../../gulp-utils/ascii'),
     gulpExamineAll = 'lint test',
     gulpExamineOnlyModified = 'pre-commit',
 
