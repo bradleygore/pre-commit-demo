@@ -1,11 +1,9 @@
 var Server = require('karma').Server,
     gitUtil = require('../gulp-utils/git'),
+    asciiUtil = require('../gulp-utils/ascii'),
     GIT_STATUSES = gitUtil.STATUSES,
     unique = require('lodash/array/uniq');
 
-/**
- * Run test once and exit
- */
 module.exports = function (done) {
 
     gitUtil.getIndexedFiles().then(function(files) {
@@ -27,7 +25,6 @@ module.exports = function (done) {
         if (modJsFiles.length === 0) {
             return done();
         }
-        //modJsFiles.splice(1,1);
 
         new Server({
             configFile: __dirname + '/../karma.conf.js',
@@ -35,9 +32,12 @@ module.exports = function (done) {
                 'js/**/!(*-spec).js'
             ].concat(modJsFiles),
             singleRun: true
-        }, function() {
-            console.log('arguments: ', arguments);
-            done();
+        }, function(status) {
+            var error;
+            if (status !== 0) {
+                error = new Error('\n' + asciiUtil.facepalm + '\n');
+            }
+            done(error);
         }).start();
     }).catch(function(up) {
         throw up;
