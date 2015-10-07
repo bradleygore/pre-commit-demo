@@ -5,17 +5,17 @@
 
 var spawn = require('child_process').spawn,
     gulp = (process.platform === 'win32' ? 'gulp.cmd' : 'gulp'),
+
     notifier = require('node-notifier'),
     asciiUtil = require('../../gulp-utils/ascii'),
-    gulpExamineAll = 'lint test',
-    gulpExamineOnlyModified = 'pre-commit',
 
-    //hookName is the gulp task to run
-    //  change to gulpExamineOnlyModified to execute
-    //  gulp task that only targets modified files
-    hookName = gulpExamineOnlyModified;
+    gulpTasks = {
+        examineAll: ['lint',  'test'],
+        examineOnlyModified: 'pre-commit'
+    },
+    gulpArgs = gulpTasks.examineAll;
 
-var hook = spawn(gulp, [hookName], {
+var hook = spawn(gulp, gulpArgs, {
     stdio: 'inherit'
 });
 
