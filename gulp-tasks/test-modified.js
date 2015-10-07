@@ -36,6 +36,7 @@ module.exports = function (done) {
             ].concat(modJsFiles),
             singleRun: true
         }, function() {
+            console.log('arguments: ', arguments);
             done();
         }).start();
     }).catch(function(up) {
