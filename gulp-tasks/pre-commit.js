@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     gitUtil = require('../gulp-utils/git'),
-    asciiUtil = require('../gulp-utils/ascii'),
     GIT_STATUSES = gitUtil.STATUSES,
     jshint = require('gulp-jshint');
 
@@ -30,15 +29,7 @@ module.exports = function preCommit(done) {
         gulp.src(modJsFiles)
             .pipe(jshint('.jshintrc'))
             .on('error', noop)
-            .on('end', function(status) {
-                console.log('statusCode: ', status);
-
-                if(status === 0) {
-                    console.log('\n' + asciiUtil.thumbsUp + '\n');
-                }
-
-                done(status);
-            })
+            .on('end', done)
             .pipe(jshint.reporter('default'))
             .pipe(jshint.reporter('fail'));
     }).catch(function(e) {

@@ -6,6 +6,7 @@
 var spawn = require('child_process').spawn,
     gulp = (process.platform === 'win32' ? 'gulp.cmd' : 'gulp'),
     notifier = require('node-notifier'),
+    asciiUtil = require('../gulp-utils/ascii'),
     gulpExamineAll = 'lint test',
     gulpExamineOnlyModified = 'pre-commit',
 
@@ -24,6 +25,8 @@ hook.on('close', function (code) {
             title: 'Cannot Commit',
             message: 'Awww, it\'s a sad - Pre-Commit Check Failed :-('
         });
+    } else {
+        console.log('\n' + asciiUtil.thumbsUp + '\n');
     }
     process.exit(code);
 });
