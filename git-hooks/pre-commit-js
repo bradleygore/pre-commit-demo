@@ -13,7 +13,7 @@ var spawn = require('child_process').spawn,
         examineAll: ['lint',  'test'],
         examineOnlyModified: ['pre-commit']
     },
-    gulpArgs = gulpTasks.examineOnlyModified;
+    gulpArgs = gulpTasks.examineAll;
 
 var hook = spawn(gulp, gulpArgs, {
     stdio: 'inherit'
