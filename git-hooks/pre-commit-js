@@ -15,8 +15,9 @@ var spawn = require('child_process').spawn,
     },
     gulpArgs = gulpTasks.examineAll;
 
+//hook is a handle to the child-process we're spawning
 var hook = spawn(gulp, gulpArgs, {
-    stdio: 'inherit'
+    stdio: 'inherit'//allows child-process to write output to current terminal session
 });
 
 hook.on('close', function (code) {
