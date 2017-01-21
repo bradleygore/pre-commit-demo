@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename');
 
 module.exports = function() {
-    if (/win/.test(process.platform)) {
+    if (/win/.test(process.platform) && process.platform !== 'darwin') {
         return gulp.src(['git-hooks/*-win', 'git-hooks/*-js'], {
                 base: 'git-hooks'
             })
